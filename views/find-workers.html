@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Workers - SkilledWork</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">SkilledWork</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/find-workers" class="active">Find Workers</a></li>
+                <li><a href="/register-worker">Register as Worker</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="/profile" class="btn">Profile</a>
+            <a href="/logout" class="btn btn-primary">Logout</a>
+        </div>
+    </header>
+
+    <main class="find-workers-container">
+        <section class="search-filters">
+            <h1>Find Skilled Workers</h1>
+            <div class="filter-box">
+                <div class="filter-group">
+                    <label for="profession">Profession</label>
+                    <select id="profession">
+                        <option value="">All Professions</option>
+                        <option value="driver">Driver</option>
+                        <option value="painter">Painter</option>
+                        <option value="plumber">Plumber</option>
+                        <option value="electrician">Electrician</option>
+                        <option value="carpenter">Carpenter</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="location">Location</label>
+                    <input type="text" id="location" placeholder="Enter location">
+                </div>
+                <button id="searchBtn" class="btn btn-primary">Search</button>
+            </div>
+        </section>
+
+        <section class="workers-list">
+            <div class="worker-cards" id="workerResults">
+                <!-- Worker cards will be dynamically inserted here -->
+                <div class="no-workers">
+                    <p>No workers found. Try adjusting your filters.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Connecting skilled workers with people who need them for short-term jobs.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/find-workers">Find Workers</a></li>
+                    <li><a href="/register-worker">Become a Worker</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Service Lane, Your City</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> contact@skilledwork.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SkilledWork. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/find-workers.js"></script>
+</body>
+</html>

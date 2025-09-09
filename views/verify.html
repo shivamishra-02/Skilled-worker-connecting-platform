@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verify Account - Skilled Worker Platform</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">SkilledWork</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/find-workers">Find Workers</a></li>
+                <li><a href="/register-worker">Register as Worker</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn btn-primary">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-form">
+            <h1>Verify Your Account</h1>
+            
+            <!-- Verification Status Indicator -->
+            <div class="verification-status">
+                <div class="status-item" id="emailStatus">
+                    <span class="status-icon">✗</span>
+                    <span class="status-text">Email Not Verified</span>
+                </div>
+                <div class="status-item" id="phoneStatus">
+                    <span class="status-icon">✗</span>
+                    <span class="status-text">Phone Not Verified</span>
+                </div>
+            </div>
+
+            <div id="verificationTabs">
+                <button class="tab-btn active" data-tab="email">Email Verification</button>
+                <button class="tab-btn" data-tab="phone">Phone Verification</button>
+            </div>
+            
+            <!-- Email Verification Tab -->
+            <div id="emailVerification" class="verification-tab active">
+                <p>We've sent a 6-digit verification code to your email. Please enter it below:</p>
+                <form id="emailVerificationForm">
+                    <input type="hidden" id="userId" value="">
+                    <div class="form-group">
+                        <label for="emailCode">Verification Code</label>
+                        <input type="text" id="emailCode" name="code" pattern="\d{6}" 
+                               title="Please enter a 6-digit code" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Verify Email</button>
+                </form>
+                <p class="resend-link">Didn't receive the code? <a href="#" id="resendEmail">Resend</a> <span id="emailResendTimer"></span></p>
+                <div id="emailError" class="error-message"></div>
+            </div>
+            
+            <!-- Phone Verification Tab -->
+            <div id="phoneVerification" class="verification-tab">
+                <p>We've sent a 6-digit verification code to your phone. Please enter it below:</p>
+                <form id="phoneVerificationForm">
+                    <input type="hidden" id="userIdPhone" value="">
+                    <div class="form-group">
+                        <label for="phoneCode">Verification Code</label>
+                        <input type="text" id="phoneCode" name="code" pattern="\d{6}" 
+                               title="Please enter a 6-digit code" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Verify Phone</button>
+                </form>
+                <p class="resend-link">Didn't receive the code? <a href="#" id="resendPhone">Resend</a> <span id="phoneResendTimer"></span></p>
+                <div id="phoneError" class="error-message"></div>
+            </div>
+
+            <!-- Success Message (hidden by default) -->
+            <div id="verificationSuccess" class="success-message" style="display: none;">
+                <h3>🎉 Verification Complete!</h3>
+                <p>Your account has been successfully verified.</p>
+                <a href="/login" class="btn btn-primary">Continue to Login</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Connecting skilled workers with people who need them for short-term jobs.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/find-workers">Find Workers</a></li>
+                    <li><a href="/register-worker">Become a Worker</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Service Lane, Your City</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> contact@skilledwork.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SkilledWork. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/verify.js"></script>
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skilled Worker Platform</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">SkilledWork</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/find-workers">Find Workers</a></li>
+                <li><a href="/register-worker">Register as Worker</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn btn-primary">Sign Up</a>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Find Trusted Professionals for Your Home Needs</h1>
+                <p>Book skilled workers with just a few clicks - reliable, affordable, and hassle-free</p>
+                <div class="search-box">
+                    <div class="search-input">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="What service do you need?">
+                    </div>
+                    <div class="search-input">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <input type="text" placeholder="Enter your location">
+                    </div>
+                    <button class="btn btn-primary">Search Now</button>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="/images/hero-banner.jpg" alt="Skilled workers">
+            </div>
+        </section>
+
+        <section class="categories">
+            <h2>Popular Services</h2>
+            <div class="category-grid">
+                <a href="/find-workers?profession=driver" class="category-card">
+                    <div class="card-icon driver">
+                        <img src="/images/driver-service.jpg" alt="Drivers">
+                    </div>
+                    <h3>Drivers</h3>
+                    <p>Professional drivers for all your transportation needs</p>
+                </a>
+                
+                <a href="/find-workers?profession=plumber" class="category-card">
+                    <div class="card-icon plumber">
+                        <img src="/images/plumbing-service.jpg" alt="Plumbers">
+                    </div>
+                    <h3>Plumbers</h3>
+                    <p>Fix leaks, installations, and all plumbing work</p>
+                </a>
+                
+                <a href="/find-workers?profession=electrician" class="category-card">
+                    <div class="card-icon electrician">
+                        <img src="/images/electrician-service.jpg" alt="Electricians">
+                    </div>
+                    <h3>Electricians</h3>
+                    <p>Wiring, repairs, and electrical installations</p>
+                </a>
+                
+                <a href="/find-workers?profession=painter" class="category-card">
+                    <div class="card-icon painter">
+                        <img src="/images/painting-service.jpg" alt="Painters">
+                    </div>
+                    <h3>Painters</h3>
+                    <p>Interior, exterior, and decorative painting</p>
+                </a>
+                
+                <a href="/find-workers?profession=carpenter" class="category-card">
+                    <div class="card-icon carpenter">
+                        <img src="/images/carpentry-service.jpg" alt="Carpenters">
+                    </div>
+                    <h3>Carpenters</h3>
+                    <p>Furniture, fixtures, and woodwork</p>
+                </a>
+                
+                <a href="/find-workers?profession=cleaner" class="category-card">
+                    <div class="card-icon cleaner">
+                        <img src="/images/cleaning-service.jpg" alt="Cleaners">
+                    </div>
+                    <h3>Cleaners</h3>
+                    <p>Deep cleaning and maintenance services</p>
+                </a>
+            </div>
+        </section>
+
+        <section class="how-it-works">
+            <h2>How It Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <i class="fas fa-search"></i>
+                    <h3>Search</h3>
+                    <p>Find the right professional for your job</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <i class="fas fa-calendar-check"></i>
+                    <h3>Book</h3>
+                    <p>Schedule at your convenient time</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <i class="fas fa-user-tie"></i>
+                    <h3>Get Work Done</h3>
+                    <p>Professional arrives and completes the job</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Connecting skilled workers with people who need them for short-term jobs.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/find-workers">Find Workers</a></li>
+                    <li><a href="/register-worker">Become a Worker</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Service Lane, Your City</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> contact@skilledwork.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SkilledWork. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/main.js"></script>
+</body>
+</html>

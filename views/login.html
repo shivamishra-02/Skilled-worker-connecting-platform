@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Skilled Worker Platform</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">SkilledWork</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/find-workers">Find Workers</a></li>
+                <li><a href="/register-worker">Register as Worker</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn btn-primary">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="auth-form">
+            <h1>Login to Your Account</h1>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <p>Don't have an account? <a href="/signup">Sign Up</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Connecting skilled workers with people who need them for short-term jobs.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/find-workers">Find Workers</a></li>
+                    <li><a href="/register-worker">Become a Worker</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Service Lane, Your City</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> contact@skilledwork.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SkilledWork. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/js/auth.js"></script>
+</body>
+</html>

@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Skilled Worker Platform</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Additional styles for horizontal card layout */
+        .registration-options {
+            max-width: 1000px;
+            margin: 2rem auto;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .registration-options h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+
+        .registration-options p.subtitle {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+        }
+
+        .option-cards {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            flex-wrap: nowrap; /* Prevent wrapping on large screens */
+        }
+
+        .option-card {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border: 2px solid #eee;
+            cursor: pointer;
+            flex: 1; /* Make cards equal width */
+            min-width: 300px; /* Minimum width before stacking */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .option-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+            border-color: #4a6bff;
+        }
+
+        .option-card.selected {
+            border-color: #4a6bff;
+            background: #f8faff;
+            position: relative;
+        }
+
+        .option-card.selected::after {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: #4a6bff;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: #4a6bff;
+            margin-bottom: 1rem;
+        }
+
+        .option-card h2 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .option-card p.description {
+            color: #666;
+            margin-bottom: 1.5rem;
+            min-height: 60px;
+        }
+
+        .benefits {
+            text-align: left;
+            margin: 1.5rem 0;
+            padding-left: 1.5rem;
+            flex-grow: 1; /* Push button to bottom */
+        }
+
+        .benefits li {
+            margin-bottom: 0.5rem;
+            color: #555;
+            list-style-type: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .benefits li::before {
+            content: '\f00c';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: #4a6bff;
+            position: absolute;
+            left: 0;
+        }
+
+        .select-btn {
+            margin-top: auto; /* Push button to bottom */
+            width: 100%;
+            padding: 0.8rem;
+            background: #4a6bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .select-btn:hover {
+            background: #3a5bef;
+        }
+
+        .registration-form {
+            max-width: 500px;
+            margin: 2rem auto 0;
+            text-align: left;
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .switch-option {
+            margin-top: 1.5rem;
+            text-align: center;
+            color: #666;
+        }
+
+        .switch-option a {
+            color: #4a6bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .login-link {
+            margin-top: 2rem;
+            text-align: center;
+            color: #666;
+        }
+
+        .login-link a {
+            color: #4a6bff;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 900px) {
+            .option-cards {
+                flex-wrap: wrap; /* Allow wrapping on smaller screens */
+            }
+            
+            .option-card {
+                min-width: calc(50% - 1rem); /* Two cards per row */
+            }
+        }
+
+        @media (max-width: 600px) {
+            .option-card {
+                min-width: 100%; /* Stack cards vertically on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">SkilledWork</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/find-workers">Find Workers</a></li>
+                <li><a href="/register-worker">Register as Worker</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn btn-primary">Sign Up</a>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="registration-options">
+            <h1>Join SkilledWork</h1>
+            <p class="subtitle">Select your account type to get started</p>
+            
+            <div class="option-cards">
+                <!-- User Option Card -->
+                <div class="option-card" id="userCard">
+                    <div class="card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h2>Find Workers</h2>
+                    <p class="description">I need skilled professionals for my projects and daily needs</p>
+                    <ul class="benefits">
+                        <li>Browse verified professionals</li>
+                        <li>Book services instantly</li>
+                        <li>Secure payment system</li>
+                        <li>Rate and review workers</li>
+                    </ul>
+                    <button class="select-btn" onclick="selectRole('user')">Continue as User</button>
+                </div>
+                
+                <!-- Worker Option Card -->
+                <div class="option-card" id="workerCard">
+                    <div class="card-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h2>Offer Services</h2>
+                    <p class="description">I want to offer my skills and get hired for jobs</p>
+                    <ul class="benefits">
+                        <li>Reach more potential clients</li>
+                        <li>Manage your bookings</li>
+                        <li>Get paid securely</li>
+                        <li>Build your professional reputation</li>
+                    </ul>
+                    <button class="select-btn" onclick="selectRole('worker')">Continue as Worker</button>
+                </div>
+            </div>
+            
+            <!-- Registration Form (hidden initially) -->
+            <div class="registration-form" id="registrationForm">
+                <h2>Complete Your <span id="roleTitle">User</span> Registration</h2>
+                <form id="signupForm">
+                    <input type="hidden" id="role" name="role" value="user">
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="location">Your Location</label>
+                        <input type="text" id="location" name="location" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="password">Create Password</label>
+                        <input type="password" id="password" name="password" minlength="6" required>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">Create Account</button>
+                </form>
+                
+                <p class="switch-option">Want to <a href="#" onclick="switchRole()">register as <span id="switchRoleText">a worker</span></a> instead?</p>
+            </div>
+            
+            <p class="login-link">Already have an account? <a href="/login">Log in here</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <p>Connecting skilled workers with people who need them for short-term jobs.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/find-workers">Find Workers</a></li>
+                    <li><a href="/register-worker">Become a Worker</a></li>
+                    <li><a href="/contact">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <p><i class="fas fa-map-marker-alt"></i> 123 Service Lane, Your City</p>
+                <p><i class="fas fa-phone"></i> +1 234 567 890</p>
+                <p><i class="fas fa-envelope"></i> contact@skilledwork.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SkilledWork. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Role selection functionality
+        function selectRole(role) {
+            // Update UI
+            document.getElementById('userCard').classList.remove('selected');
+            document.getElementById('workerCard').classList.remove('selected');
+            document.getElementById(role + 'Card').classList.add('selected');
+            
+            // Set the role value
+            document.getElementById('role').value = role;
+            
+            // Update form title
+            const roleTitle = role === 'user' ? 'User' : 'Worker';
+            document.getElementById('roleTitle').textContent = roleTitle;
+            document.getElementById('switchRoleText').textContent = role === 'user' ? 'a worker' : 'a user';
+            
+            // Show the form with animation
+            const form = document.getElementById('registrationForm');
+            form.style.display = 'block';
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+        
+        // Switch between roles
+        function switchRole() {
+            const currentRole = document.getElementById('role').value;
+            const newRole = currentRole === 'user' ? 'worker' : 'user';
+            selectRole(newRole);
+        }
+        
+        // Improved Form submission handler
+        document.getElementById('signupForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            // Basic client-side validation
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+            const location = document.getElementById('location').value.trim();
+            const password = document.getElementById('password').value;
+            const role = document.getElementById('role').value;
+
+            // Simple validation checks
+            if (!name || !email || !phone || !location || !password) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            if (password.length < 6) {
+                alert('Password must be at least 6 characters long');
+                return;
+            }
+
+            const formData = {
+                name: name,
+                email: email,
+                phone: phone,
+                location: location,
+                password: password,
+                role: role
+            };
+            
+            try {
+                const response = await fetch('/api/auth/signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(formData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    if (data.userId) {
+                        localStorage.setItem('verificationUserId', data.userId);
+                        window.location.href = '/verify';
+                    } else {
+                        // Handle case where userId isn't returned
+                        window.location.href = '/login'; // or wherever appropriate
+                    }
+                } else {
+                    // Display the actual error message from server
+                    alert(data.message || data.error || 'Signup failed. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Network error. Please check your connection and try again.');
+            }
+        });
+    </script>
+</body>
+</html>

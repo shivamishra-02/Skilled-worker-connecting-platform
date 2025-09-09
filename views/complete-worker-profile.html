@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete Your Profile - SkilledWork</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .profile-completion {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .photo-upload {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .photo-preview {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a6bff;
+            margin: 0 auto 1rem;
+            display: none;
+        }
+        
+        .upload-btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background: #4a6bff;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .upload-btn:hover {
+            background: #3a5bef;
+        }
+        
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+        
+        .skill-tag {
+            background: #f0f4ff;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .skill-tag .remove-skill {
+            color: #ff4d4d;
+            cursor: pointer;
+        }
+        
+        #skillInput {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">SkilledWork</div>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/find-workers">Find Workers</a></li>
+                <li><a href="/worker-dashboard">Dashboard</a></li>
+            </ul>
+        </nav>
+        <div class="auth-buttons">
+            <a href="/profile" class="btn">Profile</a>
+            <a href="/logout" class="btn btn-primary">Logout</a>
+        </div>
+    </header>
+
+    <main class="auth-container">
+        <div class="profile-completion">
+            <h1>Complete Your Worker Profile</h1>
+            <p>Please provide additional information to start getting job offers</p>
+            
+            <form id="workerProfileForm">
+                <div class="photo-upload">
+                    <img id="photoPreview" class="photo-preview" alt="Profile preview">
+                    <input type="file" id="photoUpload" accept="image/*" style="display: none;">
+                    <label for="photoUpload" class="upload-btn">
+                        <i class="fas fa-camera"></i> Upload Profile Photo
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    <label for="profession">Primary Profession</label>
+                    <select id="profession" name="profession" required>
+                        <option value="">Select your profession</option>
+                        <option value="driver">Driver</option>
+                        <option value="painter">Painter</option>
+                        <option value="plumber">Plumber</option>
+                        <option value="electrician">Electrician</option>
+                        <option value="carpenter">Carpenter</option>
+                        <option value="cleaner">Cleaner</option>
+                        <option value="other">Other (Specify)</option>
+                    </select>
+                </div>
+                
+                <div class="form-group" id="customProfessionGroup" style="display: none;">
+                    <label for="customProfession">Your Profession</label>
+                    <input type="text" id="customProfession" name="customProfession" placeholder="e.g., AC Technician">
+                </div>
+                
+                <div class="form-group">
+                    <label>Your Skills</label>
+                    <div class="skills-container" id="skillsContainer">
+                        <!-- Skills will be added here dynamically -->
+                    </div>
+                    <input type="text" id="skillInput" placeholder="Add a skill and press Enter">
+                    <p class="help-text">Add at least 3 relevant skills</p>
+                </div>
+                
+                <div class="form-group">
+                    <label for="experienceYears">Years of Experience</label>
+                    <input type="number" id="experienceYears" name="experienceYears" min="0" max="50" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="hourlyRate">Hourly Rate (₹)</label>
+                    <input type="number" id="hourlyRate" name="hourlyRate" min="100" max="5000" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">Your Current Location</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">Complete Profile</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <!-- Same footer as other pages -->
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const professionSelect = document.getElementById('profession');
+            const customProfessionGroup = document.getElementById('customProfessionGroup');
+            const skillInput = document.getElementById('skillInput');
+            const skillsContainer = document.getElementById('skillsContainer');
+            const photoUpload = document.getElementById('photoUpload');
+            const photoPreview = document.getElementById('photoPreview');
+            const form = document.getElementById('workerProfileForm');
+            
+            let selectedSkills = [];
+            let photoFile = null;
+            
+            // Show/hide custom profession field
+            professionSelect.addEventListener('change', function() {
+                customProfessionGroup.style.display = this.value === 'other' ? 'block' : 'none';
+            });
+            
+            // Handle skill input
+            skillInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' && this.value.trim()) {
+                    e.preventDefault();
+                    addSkill(this.value.trim());
+                    this.value = '';
+                }
+            });
+            
+            // Handle photo upload
+            photoUpload.addEventListener('change', function(e) {
+                if (e.target.files.length) {
+                    photoFile = e.target.files[0];
+                    const reader = new FileReader();
+                    reader.onload = function(event) {
+                        photoPreview.src = event.target.result;
+                        photoPreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(photoFile);
+                }
+            });
+            
+            // Form submission
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const formData = new FormData();
+                if (photoFile) formData.append('photo', photoFile);
+                
+                const profileData = {
+                    profession: professionSelect.value,
+                    customProfession: professionSelect.value === 'other' 
+                        ? document.getElementById('customProfession').value 
+                        : null,
+                    skills: selectedSkills,
+                    experienceYears: document.getElementById('experienceYears').value,
+                    hourlyRate: document.getElementById('hourlyRate').value,
+                    location: document.getElementById('location').value
+                };
+                
+                formData.append('data', JSON.stringify(profileData));
+                
+                try {
+                    const response = await axios.post('/api/worker/profile', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+                    });
+                    
+                    if (response.data.success) {
+                        window.location.href = '/worker-dashboard';
+                    } else {
+                        alert(response.data.message || 'Profile completion failed');
+                    }
+                } catch (error) {
+                    console.error('Error:', error);
+                    alert('An error occurred. Please try again.');
+                }
+            });
+            
+            function addSkill(skill) {
+                if (!selectedSkills.includes(skill)) {
+                    selectedSkills.push(skill);
+                    renderSkills();
+                }
+            }
+            
+            function removeSkill(skill) {
+                selectedSkills = selectedSkills.filter(s => s !== skill);
+                renderSkills();
+            }
+            
+            function renderSkills() {
+                skillsContainer.innerHTML = selectedSkills.map(skill => `
+                    <div class="skill-tag">
+                        ${skill}
+                        <span class="remove-skill" onclick="removeSkill('${skill}')">
+                            <i class="fas fa-times"></i>
+                        </span>
+                    </div>
+                `).join('');
+            }
+            
+            // Make functions available globally for inline handlers
+            window.addSkill = addSkill;
+            window.removeSkill = removeSkill;
+        });
+    </script>
+</body>
+</html>

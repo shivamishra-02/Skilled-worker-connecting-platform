@@ -57,5 +57,11 @@ A full-stack web application designed to bridge the gap between **skilled worker
 
 Clone the repository:
 ```bash
-git clone https://github.com/your-username/skilled-worker-platform.git
+git clone https://github.com/shivamishra-02/Skilled-worker-connecting-platform.git
 cd skilled-worker-platform
+
+
+
+
+
+
